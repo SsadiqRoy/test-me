@@ -1,0 +1,208 @@
+@use "../variables" as *;
+
+.test {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-block: 3rem;
+
+  &-progress {
+    &-head {
+      margin-bottom: 1rem;
+      color: $cl-text;
+    }
+
+    &-count {
+      color: $cl-indigo;
+    }
+    &-topic {
+      font-weight: bold;
+    }
+  }
+
+  &-question {
+    margin-block: 5rem;
+  }
+
+  &-options {
+    margin-block: 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  &-answer {
+    background-color: $cl-indigo-down;
+    padding: 2rem;
+    color: $cl-text;
+    border-radius: 1rem;
+    margin-block: 3rem;
+
+    &-head {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      color: $cl-indigo;
+      margin-bottom: 1rem;
+      font-weight: 500;
+
+      &-icon {
+        padding-top: 3px;
+        font-size: 1.8rem;
+      }
+    }
+  }
+
+  &-results {
+    padding: 3rem;
+    background-color: white;
+    border-radius: 2rem;
+    margin-block: 5rem;
+    max-width: 70rem;
+    margin-inline: auto;
+
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1.5rem;
+
+    &-left {
+      align-self: center;
+      justify-self: center;
+    }
+
+    &-right {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+}
+
+.progress {
+  width: 100%;
+  height: 8px;
+  background: $cl-border;
+  border-radius: 999px;
+  overflow: hidden;
+
+  &__bar {
+    width: var(--progress, 0%);
+    height: 100%;
+    background: $cl-indigo;
+    border-radius: inherit;
+    transition: width 0.3s ease;
+  }
+}
+
+.option {
+  padding: 1rem 1.5rem;
+  border: 1px solid $cl-border;
+  border-radius: 1rem;
+  background-color: white;
+  cursor: pointer;
+
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  font-size: 1.6rem;
+
+  &-code {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $cl-background;
+    border-radius: 5px;
+  }
+  &-value {
+    flex: 1;
+  }
+  &-icon {
+    font-size: 2rem;
+    padding-top: 3px;
+  }
+
+  &.selected {
+    background-color: $cl-indigo-down;
+    color: $cl-indigo;
+    border: 2px solid $cl-indigo;
+
+    .option-code {
+      background-color: $cl-indigo;
+      color: white;
+    }
+  }
+  &.correct {
+    background-color: $cl-green-down;
+    color: $cl-green;
+    border: 2px solid $cl-green;
+
+    .option-code {
+      background-color: $cl-green;
+      color: white;
+    }
+  }
+  &.wrong {
+    background-color: $cl-pink-down;
+    color: $cl-pink;
+    border: 2px solid $cl-pink;
+
+    .option-code {
+      background-color: $cl-pink;
+      color: white;
+    }
+  }
+}
+
+.score {
+  --size: 100px;
+  --ring-width: 7px;
+  // --primary: #6366f1;
+  // --secondary: #eef0fa;
+  --score: 70%;
+
+  width: var(--size);
+  height: var(--size);
+  position: relative;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+
+  // Progress ring
+  background: conic-gradient(from 0deg, $cl-indigo 0 var(--score), $cl-background var(--score) 100%);
+
+  // Creates the white center
+  &::before {
+    content: "";
+    position: absolute;
+    inset: var(--ring-width);
+    border-radius: inherit;
+    background: #fff;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__value {
+    color: #111827;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.5px;
+  }
+
+  &__label {
+    margin-top: 5px;
+    color: $cl-text;
+    font-size: 9px;
+    font-weight: 400;
+    line-height: 1;
+  }
+}

@@ -1,18 +1,19 @@
 import type { ReactNode } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <section className="layout">
       <header className="header">
         <div className="header-cover">
-          <div className="header-logo">
+          <Link to={"/"} className="header-logo">
             <img src="/full-logo.png" alt="Logo" />
-          </div>
+          </Link>
           <nav className="header-nav">
             <NavLink to="/">Home</NavLink>
             <NavLink to="/topics">Topics</NavLink>
             <NavLink to="/past">Past</NavLink>
+            <NavLink to="/developer">Developer</NavLink>
           </nav>
           <div className="header-user">
             <div className="header-user-streak">🔥 5 Day Streak</div>
@@ -30,7 +31,9 @@ export default function Layout({ children }: { children: ReactNode }) {
             <p>Terms of Service</p>
             <p>Privacy Policy</p>
             <p>Support Helpdesk</p>
-            <p>The Developer</p>
+            <p>
+              <NavLink to="/developer">The Developer</NavLink>
+            </p>
           </nav>
         </div>
       </footer>

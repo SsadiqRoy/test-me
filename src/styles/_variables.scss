@@ -1,0 +1,40 @@
+// @use "sass.color";
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+// :root {
+//   --cl-background: #f9fafb;
+//   // --cl-background: #f6f6f6;
+//   --cl-primary: #6366f1;
+//   --cl-orange: #f59e0b;
+//   --cl-purple: #ec4899;
+//   --cl-pink: #ef4444;
+//   --cl-blue: #3b82f6;
+//   --cl-green: #10b981;
+//   --cl-indigo: #6366f1;
+//   --cl-text: #4b5563;
+//   --cl-border: #e5e7eb;
+
+//   --cl-purple-down: rgba(236, 72, 154, 0.1);
+// }
+
+$cl-background: #f9fafb;
+$cl-primary: #6366f1;
+$cl-orange: #f59e0b;
+$cl-purple: #ec4899;
+$cl-pink: #ef4444;
+$cl-blue: #3b82f6;
+$cl-green: #10b981;
+$cl-indigo: #6366f1;
+$cl-text: #4b5563;
+$cl-border: #e5e7eb;
+$cl-link: #4b5563;
+
+$cl-indigo-down: rgba(99, 101, 241, 0.25);
+$cl-green-down: rgba(16, 185, 129, 0.25);
+$cl-purple-down: rgba(236, 72, 154, 0.1);
+$cl-pink-down: rgba(239, 68, 68, 0.251);
+
+$font: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+// $cl-background: var(--cl-background);
+// $cl-background: var(--cl-background);

@@ -1,0 +1,266 @@
+@use "./variables.scss" as *;
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: $font;
+  color: black;
+  font-size: 10px;
+}
+body {
+  font-size: 1.4rem;
+}
+
+img {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.tag {
+  padding: 5px 1rem;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.tag-green {
+  color: $cl-green;
+  background-color: $cl-green-down;
+}
+.tag-indigo {
+  color: $cl-indigo;
+  background-color: $cl-indigo-down;
+}
+
+.btn {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+
+  padding: 1rem 2.5rem;
+  border-radius: 1rem;
+  font-family: $font;
+  font-weight: 500;
+
+  border: 1px solid $cl-border;
+  outline: none;
+  font-size: 1.6rem;
+  cursor: pointer;
+
+  &-icon {
+    padding-top: 6px;
+  }
+}
+
+.btn-indigo {
+  background-color: $cl-indigo;
+  color: white;
+  transition: background-color 0.5s ease;
+  border-color: $cl-indigo;
+
+  &:hover,
+  &:active {
+    background-color: darken($color: $cl-indigo, $amount: 10);
+  }
+}
+.btn-green {
+  background-color: $cl-green;
+  color: white;
+  transition: background-color 0.5s ease;
+  border-color: $cl-green;
+
+  &:hover,
+  &:active {
+    background-color: darken($color: $cl-green, $amount: 10);
+  }
+}
+
+.link {
+  text-decoration: underline;
+  font-weight: 500;
+  color: $cl-link;
+}
+
+.return {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  color: $cl-indigo;
+  cursor: pointer;
+
+  span {
+    padding-top: 4px;
+  }
+}
+
+.center-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.right-items {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 1rem;
+}
+.left-items {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 1rem;
+}
+.separate-items {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.cl-text {
+  color: $cl-text;
+}
+
+.layout {
+  background-color: $cl-background;
+  display: flex;
+  flex-direction: column;
+
+  // height: 100vh;
+  // height: 100dvh;
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  & > * {
+    padding: 1rem;
+  }
+}
+
+.main {
+  flex: 1;
+}
+
+.header,
+.footer {
+  border-bottom: 1px solid $cl-border;
+  background-color: white;
+  counter-reset: $cl-text;
+}
+.header-cover,
+.footer-cover {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  align-items: center;
+  width: 100%;
+  max-width: 110rem;
+  margin-inline: auto;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+
+  &-logo {
+    width: 15rem;
+    height: 3rem;
+  }
+
+  &-nav {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    font-size: 1.6rem;
+    transition: all 0.5s ease-in;
+
+    a {
+      text-decoration: none;
+      color: $cl-text;
+
+      &:hover {
+        transition: color 0.5s ease;
+        color: $cl-indigo;
+      }
+    }
+
+    .active {
+      color: $cl-indigo;
+      font-weight: bold;
+      position: relative;
+      padding-bottom: 7px;
+      transition: all 0.5s ease-in;
+    }
+    .active::after {
+      transition: all 0.5s ease-in;
+      content: "";
+      width: 2rem;
+      padding: 2px;
+      border-radius: 100px;
+      background-color: $cl-indigo;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  &-user {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+
+    &-streak {
+      background-color: $cl-purple-down;
+      padding: 0.5rem 1.3rem;
+      border-radius: 100px;
+      font-weight: bold;
+      color: $cl-purple;
+    }
+    &-image {
+      width: 4rem;
+      height: 4rem;
+      border-radius: 1000px;
+      border: $cl-text;
+      overflow: hidden;
+    }
+  }
+}
+
+.footer {
+  color: $cl-text;
+  font-size: 1.2rem;
+  padding-block: 1.5rem;
+  border-top: 1px solid $cl-border;
+
+  &-nav {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+
+    p {
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      &:hover {
+        transition: color 0.5s ease;
+        color: $cl-indigo;
+        cursor: pointer;
+      }
+    }
+  }
+}

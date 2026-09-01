@@ -1,0 +1,82 @@
+@use "../_variables" as *;
+
+.topics {
+  width: 100%;
+  max-width: 90rem;
+  margin-inline: auto;
+
+  padding-block: 2rem;
+
+  &-heading {
+    margin-block: 2rem 1rem;
+    font-size: 4rem;
+  }
+
+  &-copy {
+    max-width: 70rem;
+    color: $cl-text;
+  }
+
+  &-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+}
+
+.topic {
+  background-color: white;
+  border-radius: 1.5rem;
+  border: 1px solid $cl-border;
+  padding: 1.5rem;
+  cursor: pointer;
+
+  &-icon {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 1rem;
+    background-color: $cl-indigo;
+    color: white;
+    margin-bottom: 1rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+
+    &.orange {
+      background-color: $cl-orange;
+    }
+    &.blue {
+      background-color: $cl-blue;
+    }
+    &.pink {
+      background-color: $cl-pink;
+    }
+    &.purple {
+      background-color: $cl-purple;
+    }
+    &.green {
+      background-color: $cl-green;
+    }
+    &.indigo {
+      background-color: $cl-indigo;
+    }
+  }
+
+  &-title {
+    font-size: 1.8rem;
+  }
+
+  &-questions {
+    margin-top: 2px;
+    color: $cl-text;
+    font-size: 1.2rem;
+  }
+
+  &.active {
+    border-width: 2px;
+    border-color: $cl-indigo;
+  }
+}
