@@ -1,0 +1,149 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+:root {
+  /* --cl-background: #eef2ff; */
+  --cl-background: #f6f6f6;
+  --cl-primary: #6366f1;
+  --cl-orange: #f59e0b;
+  --cl-purple: #ec4899;
+  --cl-pink: #ef4444;
+  --cl-blue: #3b82f6;
+  --cl-green: #10b981;
+  --cl-indigo: #6366f1;
+  --cl-text: #4b5563;
+  --cl-border: #e5e7eb;
+
+  --cl-purple-down: rgba(236, 72, 154, 0.1);
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: black;
+  font-size: 10px;
+}
+body {
+  font-size: 1.4rem;
+}
+
+img {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
+}
+
+
+.layout {
+  background-color: var(--cl-background);
+  display: flex;
+  flex-direction: column;
+
+  height: 100vh;
+  height: 100dvh;
+}
+
+.layout > * {
+  padding: 1rem;
+}
+.main {
+  flex: 1;
+}
+
+.header,
+.footer {
+  border-bottom: 1px solid var(--cl-border);
+  background-color: white;
+  counter-reset: var(--cl-text);
+}
+.header-cover,
+.footer-cover {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  align-items: center;
+  width: 100%;
+  max-width: 110rem;
+  margin-inline: auto;
+}
+
+.header-logo {
+  width: 15rem;
+  height: 3rem;
+}
+
+.header-nav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  font-size: 1.6rem;
+}
+.header-nav a {
+  text-decoration: none;
+  color: var(--cl-text);
+}
+.header-nav a:hover {
+  transition: color 0.5s ease;
+  color: var(--cl-indigo);
+}
+
+.header-nav .active {
+  color: var(--cl-indigo);
+  font-weight: bold;
+  position: relative;
+  padding-bottom: 7px;
+}
+.header-nav .active::after {
+  content: "";
+  width: 2rem;
+  padding: 2px;
+  border-radius: 100px;
+  background-color: var(--cl-indigo);
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.header-user {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.header-user-streak {
+  background-color: var(--cl-purple-down);
+  padding: 0.5rem 1.3rem;
+  border-radius: 100px;
+  font-weight: bold;
+  color: var(--cl-purple);
+}
+.header-user-image {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 1000px;
+  border: var(--cl-text);
+  overflow: hidden;
+}
+
+.footer {
+  color: var(--cl-text);
+  font-size: 1.2rem;
+  padding-block: 1.5rem;
+}
+.footer-nav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.footer-nav p:hover {
+  transition: color 0.5s ease;
+  color: var(--cl-indigo);
+  cursor: pointer;
+}
