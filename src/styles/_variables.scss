@@ -38,3 +38,9 @@ $font: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 
 // $cl-background: var(--cl-background);
 // $cl-background: var(--cl-background);
+
+@mixin centerItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

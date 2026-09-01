@@ -10,7 +10,7 @@ export default function Test() {
     <Layout>
       <div className="test">
         <div className="test-complete">
-          <h1 style={{ textAlign: "center" }}>Quiz Complete</h1>
+          <h1 style={{ textAlign: "center", marginBottom: "1rem" }}>Quiz Complete</h1>
           <p className="cl-text" style={{ textAlign: "center" }}>
             Excellent effort! Review your metrics below or challenge yourself again to optimize your record.
           </p>

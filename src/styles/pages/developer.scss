@@ -1,0 +1,60 @@
+@use "../variables" as *;
+
+.dev {
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-block: 2rem;
+
+  &-console {
+    margin-block: 2rem;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 2rem;
+
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+
+    &-right {
+      p {
+        &:not(:last-child) {
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+
+  &-image {
+    overflow: hidden;
+    border-radius: 1.5rem;
+    height: 25rem;
+  }
+
+  &-hire {
+    padding: 2rem;
+    background-color: white;
+    border-radius: 1.5rem;
+
+    display: flex;
+    // justify-content: space-between;
+    // align-items: center;
+    gap: 1rem;
+    flex-direction: column;
+
+    &-contact {
+      padding: 5px 1rem;
+      border: 1px solid $cl-border;
+      border-radius: 8px;
+
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+
+      &-icon {
+        padding-top: 3px;
+        font-size: 1.6rem;
+      }
+    }
+  }
+}

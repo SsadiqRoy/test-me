@@ -5,7 +5,7 @@
   height: 100%;
   max-width: 110rem;
   margin-inline: auto;
-  padding-block: 3rem;
+  padding-block: 4rem;
 
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -88,11 +88,11 @@
     align-items: end;
 
     &-illustration {
-      background-image: url(/public/illustration.png);
+      background-image: url(/illustration.png);
       background-position: center;
       background-size: cover;
 
-      height: 70%;
+      height: 90%;
       width: 90%;
       border-radius: 2rem;
 
