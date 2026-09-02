@@ -44,3 +44,133 @@ $font: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   align-items: center;
   justify-content: center;
 }
+
+@mixin respond($breakpoint) {
+  // 300
+  @if $breakpoint == mini {
+    @media (max-width: 18.75em) {
+      @content;
+    }
+  }
+
+  // 400
+  @if $breakpoint == small {
+    @media (max-width: 25em) {
+      @content;
+    }
+  }
+
+  // 600
+  @if $breakpoint == phone {
+    @media (max-width: 37.5em) {
+      @content;
+    }
+  }
+
+  // 900
+  @if $breakpoint == port {
+    @media (max-width: 56.25em) {
+      @content;
+    }
+  }
+  // 1200
+  @if $breakpoint == land {
+    @media (max-width: 75em) {
+      @content;
+    }
+  }
+  // 1800
+  @if $breakpoint == big-desktop {
+    @media (min-width: 112.5em) {
+      @content;
+    }
+  }
+}
+
+@mixin responsive($breakpoint) {
+  // 1024
+  @if $breakpoint == Tland {
+    @media (max-width: 64em) {
+      @content;
+    }
+  }
+  // 1000
+  @if $breakpoint == Tport {
+    @media (max-width: 62.5em) {
+      @content;
+    }
+  }
+  // 768
+  @if $breakpoint == Mland {
+    @media (max-width: 48em) {
+      @content;
+    }
+  }
+  // 480
+  @if $breakpoint == Mport {
+    @media (max-width: 30em) {
+      @content;
+    }
+  }
+  // 320
+  @if $breakpoint == mini {
+    @media (max-width: 20em) {
+      @content;
+    }
+  }
+}
+
+@mixin smallerDevices() {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+@mixin max700() {
+  @media (max-width: 700px) {
+    @content;
+  }
+}
+
+@mixin theme($mode) {
+  @media (prefers-color-scheme: $mode) {
+    @content;
+  }
+}
+
+@mixin scroll-bar {
+  &::-webkit-scrollbar {
+    background-color: $cl-border;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 1rem;
+    background-color: $cl-indigo;
+    border: 5px solid $cl-border;
+
+    // @include theme(dark) {
+    //   background-color: $cl-background;
+    // }
+  }
+}
+@mixin scroll-bar2 {
+  &::-webkit-scrollbar {
+    background-color: $cl-border;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 1rem;
+    background-color: $cl-indigo;
+    border: 5px solid $cl-border;
+
+    // @include theme(light) {
+    //   background-color: rgb(83, 82, 82);
+    // }
+  }
+}
+@mixin no-scroll-bar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}

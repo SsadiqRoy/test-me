@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "../_variables" as *;
 
 .home {
@@ -11,6 +12,11 @@
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
 
+  @include responsive(Mland) {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
   &-left {
     height: 100%;
     display: flex;
@@ -23,6 +29,11 @@
       flex-direction: column;
       gap: 2rem;
 
+      @include responsive(Mland) {
+        align-items: center;
+        width: 90%;
+        margin-inline: auto;
+      }
       .tag {
         display: flex;
         gap: 1rem;
@@ -51,12 +62,22 @@
       display: flex;
       gap: 6rem;
       align-items: center;
+
+      @include respond(phone) {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
     }
 
     &-users {
       display: flex;
       // gap: 2rem;
       align-items: center;
+
+      @include respond(phone) {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
 
       .hlu-left {
         display: flex;
@@ -74,8 +95,12 @@
         }
       }
 
-      .hlu-right-count {
-        color: $cl-indigo;
+      .hlu-right {
+        text-align: center;
+
+        &-count {
+          color: $cl-indigo;
+        }
       }
     }
   }
@@ -87,6 +112,9 @@
     justify-content: center;
     align-items: end;
 
+    @include responsive(Mland) {
+      margin-bottom: 2rem;
+    }
     &-illustration {
       background-image: url(/illustration.png);
       background-position: center;
@@ -99,6 +127,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
+
+      @include responsive(Mland) {
+        min-height: 30rem;
+        align-self: center;
+      }
     }
 
     &-quick {

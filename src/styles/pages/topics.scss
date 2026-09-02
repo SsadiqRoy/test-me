@@ -22,6 +22,10 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     margin-top: 3rem;
+
+    @include responsive(Mport) {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 }
 

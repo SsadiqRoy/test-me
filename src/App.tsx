@@ -5,8 +5,16 @@ import { NavLink } from "react-router-dom";
 import { Button } from "./components";
 import Layout from "./Layout";
 import "./styles/pages/home.scss";
+import { useQuiz } from "./context";
+import { useEffect } from "react";
 
 function App() {
+  const { selectTopic } = useQuiz();
+
+  useEffect(() => {
+    selectTopic(null);
+  });
+
   return (
     <Layout>
       <div className="home">

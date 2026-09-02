@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "./variables.scss" as *;
 
 *,
@@ -15,6 +16,7 @@ html {
 }
 body {
   font-size: 1.4rem;
+  @include scroll-bar;
 }
 
 img {
@@ -48,11 +50,13 @@ a {
   display: flex;
   gap: 1rem;
   align-items: center;
+  justify-content: center;
 
   padding: 1rem 2.5rem;
   border-radius: 1rem;
   font-family: $font;
   font-weight: 500;
+  text-align: center;
 
   border: 1px solid $cl-border;
   outline: none;
@@ -72,7 +76,13 @@ a {
 
   &:hover,
   &:active {
-    background-color: darken($color: $cl-indigo, $amount: 10);
+    background-color: color.adjust($cl-indigo, $lightness: -10%);
+  }
+  &:disabled,
+  &:hover:disabled {
+    background-color: color.adjust($cl-indigo, $lightness: 10%);
+    cursor: not-allowed;
+    border-color: transparent;
   }
 }
 .btn-green {
@@ -83,7 +93,13 @@ a {
 
   &:hover,
   &:active {
-    background-color: darken($color: $cl-green, $amount: 10);
+    background-color: color.adjust($cl-green, $lightness: -10%);
+  }
+  &:disabled,
+  &:hover:disabled {
+    background-color: color.adjust($cl-green, $lightness: 10%);
+    cursor: not-allowed;
+    border-color: transparent;
   }
 }
 
@@ -145,6 +161,8 @@ a {
   min-height: 100vh;
   min-height: 100dvh;
 
+  @include scroll-bar;
+
   & > * {
     padding: 1rem;
   }
@@ -152,6 +170,7 @@ a {
 
 .main {
   flex: 1;
+  @include scroll-bar;
 }
 
 .header,
@@ -178,6 +197,11 @@ a {
   &-logo {
     width: 15rem;
     height: 3rem;
+
+    @include respond(phone) {
+      width: 10rem;
+      height: 2rem;
+    }
   }
 
   &-nav {
@@ -186,6 +210,10 @@ a {
     align-items: center;
     font-size: 1.6rem;
     transition: all 0.5s ease-in;
+
+    @include respond(phone) {
+      display: none;
+    }
 
     a {
       text-decoration: none;
@@ -229,6 +257,10 @@ a {
       border-radius: 100px;
       font-weight: bold;
       color: $cl-purple;
+
+      @include respond(phone) {
+        display: none;
+      }
     }
     &-image {
       width: 4rem;
@@ -246,11 +278,21 @@ a {
   padding-block: 1.5rem;
   border-top: 1px solid $cl-border;
 
+  &-cover {
+    @include respond(phone) {
+      flex-wrap: wrap;
+    }
+  }
+
   &-nav {
     display: flex;
     gap: 1rem;
     align-items: center;
 
+    @include respond(phone) {
+      flex-wrap: wrap;
+      gap: 5px;
+    }
     p {
       a {
         text-decoration: none;

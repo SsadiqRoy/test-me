@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { type ReactNode } from "react";
 import { AiOutlinePython } from "react-icons/ai";
 import { BiMath } from "react-icons/bi";
 import { GoCode, GoGlobe } from "react-icons/go";
@@ -6,11 +6,17 @@ import { LuBook } from "react-icons/lu";
 import { MdOutlineTopic } from "react-icons/md";
 import { PiAtom } from "react-icons/pi";
 import { Button, Return } from "./components";
+import { useQuiz, type Topic } from "./context";
 import Layout from "./Layout";
 import "./styles/pages/topics.scss";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Topics() {
+  const { topic, quiz } = useQuiz();
+  const navigate = useNavigate();
+
+  console.log(quiz);
+
   return (
     <Layout>
       <div className="topics">
@@ -30,9 +36,7 @@ export default function Topics() {
         </div>
 
         <div className="center-item" style={{ marginTop: "3rem" }}>
-          <Link to={"/test"} style={{ width: "max-content" }}>
-            <Button text="Generate Quiz" />
-          </Link>
+          <Button text={topic == null ? "Select a Topic" : "Generate Quiz"} disabled={topic == null} onClick={() => navigate("/test")} />
         </div>
       </div>
     </Layout>
@@ -41,10 +45,14 @@ export default function Topics() {
 
 type TopicProps = { color: "blue" | "indigo" | "green" | "purple" | "pink" | "orange"; title: string; icon?: ReactNode };
 function Topic({ color, title, icon }: TopicProps) {
-  const active = title == "JavaScript" ? "active" : "";
+  const { topic: selected, selectTopic } = useQuiz();
+  const active = title.toLowerCase() == selected ? "active" : "";
+
+  const handleSelect = () => selectTopic(title.toLowerCase() as Topic);
 
   return (
-    <div className={`topic ${active}`}>
+    <div className={`topic ${active}`} onClick={handleSelect}>
+      {/* <div className={`topic ${active}`}> */}
       <div className={`topic-icon ${color}`}>{icon || <MdOutlineTopic />}</div>
       <strong className="topic-title">{title}</strong>
       <p className="topic-questions">10 Questions</p>

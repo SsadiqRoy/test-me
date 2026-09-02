@@ -8,18 +8,21 @@ import Test from "./Test.tsx";
 import Past from "./Past.tsx";
 import Developer from "./Developer.tsx";
 import NotFound from "./NotFound.tsx";
+import QuizProvider from "./context.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="topics" element={<Topics />} />
-        <Route path="test" element={<Test />} />
-        <Route path="past" element={<Past />} />
-        <Route path="developer" element={<Developer />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <QuizProvider>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="topics" element={<Topics />} />
+          <Route path="test" element={<Test />} />
+          <Route path="past" element={<Past />} />
+          <Route path="developer" element={<Developer />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </QuizProvider>
     </BrowserRouter>
   </StrictMode>,
 );

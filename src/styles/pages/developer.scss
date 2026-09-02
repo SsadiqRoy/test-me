@@ -15,10 +15,14 @@
     grid-template-columns: 1fr 2fr;
     gap: 2rem;
 
+    @include respond(phone) {
+      grid-template-columns: 1fr;
+    }
+
     &-right {
       p {
         &:not(:last-child) {
-          margin-bottom: 5px;
+          margin-bottom: 10px;
         }
       }
     }
@@ -41,6 +45,10 @@
     gap: 1rem;
     flex-direction: column;
 
+    &-contacts {
+      flex-wrap: wrap;
+    }
+
     &-contact {
       padding: 5px 1rem;
       border: 1px solid $cl-border;
@@ -50,6 +58,7 @@
       gap: 1rem;
       justify-content: center;
       align-items: center;
+      // flex-wrap: wrap;
 
       &-icon {
         padding-top: 3px;

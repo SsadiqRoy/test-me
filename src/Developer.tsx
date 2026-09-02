@@ -46,7 +46,7 @@ export default function Developer() {
             <DevHire name="Email" link="mailto:ssadiqueroy@gmail.com" icon={<LuMail />} />
             <DevHire name="WhatsApp" link="https://wa.me/ssadiqroy" icon={<FaWhatsapp />} />
             <DevHire name="Facebook" link="https://web.facebook.com/SsadiqRoy" icon={<AiOutlineFacebook />} />
-            <DevHire name="Instagram" link="https://instagram.com/ssadiqroy" icon={<FaInstagram />} />
+            <DevHire name="Instagram" link="https://www.instagram.com/ssadiqroy" icon={<FaInstagram />} />
             <DevHire name="LinkedIn" link="https://www.linkedin.com/in/samuel-nigal-3491251bb/" icon={<PiLinkedinLogo />} />
             <DevHire name="Portfolio" link="https://ssadiqroy.vercel.app/" icon={<GrCatalog />} />
           </div>
@@ -58,7 +58,7 @@ export default function Developer() {
 
 function DevHire({ link, icon, name }: { link: string; name: string; icon: ReactNode }) {
   return (
-    <Link to={link} className="dev-hire-contact">
+    <Link to={link} target="_blank" className="dev-hire-contact">
       <span className="dev-hire-contact-icon">{icon}</span>
       {name}
     </Link>
