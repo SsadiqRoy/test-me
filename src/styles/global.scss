@@ -30,6 +30,18 @@ a {
   color: inherit;
 }
 
+.text-link {
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  &:hover {
+    transition: color 0.5s ease;
+    color: $cl-indigo;
+    cursor: pointer;
+  }
+}
+
 .tag {
   padding: 5px 1rem;
   border-radius: 100px;
@@ -44,6 +56,22 @@ a {
 .tag-indigo {
   color: $cl-indigo;
   background-color: $cl-indigo-down;
+}
+.tag-orange {
+  color: $cl-orange;
+  background-color: $cl-orange-down;
+}
+.tag-blue {
+  color: $cl-blue;
+  background-color: $cl-blue-down;
+}
+.tag-pink {
+  color: $cl-pink;
+  background-color: $cl-pink-down;
+}
+.tag-purple {
+  color: $cl-purple;
+  background-color: $cl-purple-down;
 }
 
 .btn {
@@ -139,13 +167,14 @@ a {
   justify-content: start;
   align-items: center;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 .separate-items {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 1rem;
   flex-wrap: wrap;
-  align-items: center;
 }
 .cl-text {
   color: $cl-text;
@@ -156,12 +185,8 @@ a {
   display: flex;
   flex-direction: column;
 
-  // height: 100vh;
-  // height: 100dvh;
-  min-height: 100vh;
-  min-height: 100dvh;
-
-  @include scroll-bar;
+  height: 100vh;
+  height: 100dvh;
 
   & > * {
     padding: 1rem;
@@ -170,6 +195,7 @@ a {
 
 .main {
   flex: 1;
+  overflow-y: scroll;
   @include scroll-bar;
 }
 
@@ -261,6 +287,11 @@ a {
       @include respond(phone) {
         display: none;
       }
+
+      &.streak-green {
+        background-color: $cl-green-down;
+        color: $cl-green;
+      }
     }
     &-image {
       width: 4rem;
@@ -304,5 +335,25 @@ a {
         cursor: pointer;
       }
     }
+  }
+}
+
+.not-found {
+  // min-height: 100dvh;
+  height: 100%;
+  // flex: 1;
+  // border: 1px solid salmon;
+
+  @include centerItem;
+
+  &-cover {
+    width: 100%;
+    max-width: 70rem;
+    margin-inline: auto;
+    background-color: white;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 2rem;
+    border: 1px solid $cl-border;
   }
 }

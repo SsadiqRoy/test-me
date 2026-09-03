@@ -38,13 +38,14 @@
   }
 
   &-percentage {
-    background-color: $cl-indigo-down;
-    color: $cl-indigo;
+    // background-color: $cl-indigo-down;
+    // color: $cl-indigo;
     width: 5rem;
     height: 5rem;
     border-radius: 50%;
     font-weight: bolder;
     font-size: 1.6rem;
+    flex-shrink: 0;
 
     @include centerItem;
   }
@@ -65,5 +66,12 @@
     color: $cl-indigo;
     padding: 0.5rem 1rem;
     font-size: 1.4rem;
+    cursor: pointer;
+  }
+
+  .left-items {
+    @include respond(phone) {
+      gap: 3px;
+    }
   }
 }

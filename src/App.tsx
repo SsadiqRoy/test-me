@@ -7,6 +7,7 @@ import Layout from "./Layout";
 import "./styles/pages/home.scss";
 import { useQuiz } from "./context";
 import { useEffect } from "react";
+import { ScoreUtils } from "./lib/helpers";
 
 function App() {
   const { selectTopic } = useQuiz();
@@ -68,7 +69,7 @@ function App() {
         <div className="home-right">
           <div className="home-right-illustration">
             {/* <img src="/illustration.png" alt="Illustration" /> */}
-            <div className="home-right-quick">
+            {/* <div className="home-right-quick">
               <div className="hrq-left">
                 <span>
                   <GiCheckMark />
@@ -81,7 +82,9 @@ function App() {
                 <strong>Javascript Master</strong>
                 <p>Score: 90%</p>
               </div>
-            </div>
+            </div> */}
+
+            <LastTest />
           </div>
         </div>
       </div>
@@ -95,6 +98,49 @@ function HLUser({ path = "/user2.jpg", position: pos = 0 }: { path?: string; pos
   return (
     <div className="hlu-user" style={{ "--position": `-${pos * 3}0%` } as any}>
       <img src={path} alt="" />
+    </div>
+  );
+}
+
+function LastTest() {
+  const { quizManager } = useQuiz();
+  const quiz = quizManager.getQuizes()[0];
+
+  if (!quiz)
+    return (
+      <div className="home-right-quick">
+        <div className="hrq-left">
+          <span>
+            <GiCheckMark />
+          </span>
+        </div>
+        {/* <div className="hrq-middle">
+          <span className="tag tag-green">Mastered</span>
+        </div> */}
+        <div className="hrq-right">
+          <strong>Master JavaScript</strong>
+          <p>Score over 60%</p>
+        </div>
+      </div>
+    );
+
+  const percentage = (quiz.score / quiz.questions.length) * 100;
+  const utl = new ScoreUtils(percentage);
+
+  return (
+    <div className="home-right-quick">
+      <div className="hrq-left">
+        <span>
+          <GiCheckMark />
+        </span>
+      </div>
+      <div className="hrq-middle">
+        <span className={`tag tag-${utl.color}`}>{utl.message}</span>
+      </div>
+      <div className="hrq-right">
+        <strong style={{ textTransform: "capitalize" }}>{quiz.topic} master</strong>
+        <p>Score: {percentage}%</p>
+      </div>
     </div>
   );
 }

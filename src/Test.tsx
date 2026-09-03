@@ -6,17 +6,19 @@ import type { AnswerStatus, AnswerType, Question } from "../types";
 import { Button } from "./components";
 import { useQuiz } from "./context";
 import Layout from "./Layout";
+import { ScoreUtils } from "./lib/helpers";
 import "./styles/pages/test.scss";
 
 export default function Test() {
-  const { quiz, topic } = useQuiz();
+  const { quiz, topic, saveQuiz, retakeQuiz } = useQuiz();
   const navigate = useNavigate();
 
-  const [quesNumber, setQuesNumber] = useState<number>(0);
+  const [questionIndex, setQuestionIndex] = useState<number>(0);
   const [answer, setAnswer] = useState<Question["answer"] | null>(null);
 
-  const question = quiz?.questions[quesNumber];
-  // const [question, setQuestion] = useState<Question | null>(quiz?.questions[quesNumber] || null);
+  const quesNumber = questionIndex + 1;
+  const question = quiz?.questions[questionIndex];
+  const totalQuestions = quiz?.questions.length || 0;
 
   const [score, setScore] = useState(0);
   const [started, setStarted] = useState(false);
@@ -31,9 +33,13 @@ export default function Test() {
     setStarted(true);
   }, [quiz, navigate]);
 
-  // useEffect(() => {
-  //   setInterval(() => setTimeSpent((t) => t + 1), 1000);
-  // }, [started]);
+  useEffect(() => {
+    setInterval(() => setTimeSpent((t) => t + 1), 1000);
+  }, [started]);
+
+  useEffect(() => {
+    if (quesNumber >= totalQuestions) completeTest();
+  }, [quesNumber]);
 
   const pickAnswer = (a: AnswerType) => setAnswer(a);
   const submitAns = () => setShowAns(true);
@@ -42,18 +48,36 @@ export default function Test() {
     if (answer == question?.answer) setScore((t) => t + 1);
     setAnswer(null);
     setShowAns(false);
-    if (quesNumber < (quiz?.questions.length || 0) - 1) setQuesNumber((t) => t + 1);
+    setQuestionIndex((t) => t + 1);
   }
 
-  const onTest = completed || showAns;
+  function completeTest() {
+    saveQuiz(timeSpent, score);
+    setCompleted(true);
+  }
+
+  function startOver() {
+    const allow = retakeQuiz(quiz || "");
+    if (!allow) return;
+
+    setStarted(false);
+    setScore(0);
+    setCompleted(false);
+    setQuestionIndex(0);
+    setShowAns(false);
+  }
 
   return (
     <Layout>
       <div className="test">
-        <TestProgress current={quesNumber + 1} total={quiz?.questions.length || 0} topic={topic} />
+        {!completed && <TestProgress current={quesNumber} total={totalQuestions} topic={quiz?.topic || topic} />}
 
-        {question && !onTest && <TestQuestion question={question} answer={answer} pickAnswer={pickAnswer} submit={submitAns} />}
-        {question && onTest && <TestAnswer question={question} answer={answer} next={nextQuestion} />}
+        {question && !completed && !showAns && <TestQuestion question={question} answer={answer} pickAnswer={pickAnswer} submit={submitAns} />}
+        {question && !completed && showAns && (
+          <TestAnswer question={question} answer={answer} next={nextQuestion} isFinal={quesNumber == totalQuestions} />
+        )}
+
+        {completed && <TestComplete score={score} total={totalQuestions} restart={startOver} />}
       </div>
     </Layout>
   );
@@ -89,7 +113,8 @@ function TestQuestion({ question, pickAnswer, answer, submit }: TestQProps) {
     </>
   );
 }
-function TestAnswer({ question, answer, next }: { question?: Question; answer?: AnswerType; next(): void }) {
+
+function TestAnswer({ question, answer, isFinal = false, next }: { question?: Question; answer?: AnswerType; next(): void; isFinal?: boolean }) {
   if (!question) return;
   const options = question.options;
 
@@ -121,40 +146,40 @@ function TestAnswer({ question, answer, next }: { question?: Question; answer?: 
       </div>
 
       <div className="test-next-button right-items">
-        <Button text="Next Question" onClick={next} />
+        <Button text={isFinal ? "View Results" : "Next Question"} onClick={next} />
       </div>
     </>
   );
 }
 
-function TestComplete() {
+function TestComplete({ score, total, restart }: { score: number; total: number; restart(): void }) {
+  const percentage = (score / total) * 100;
+  const utl = new ScoreUtils(percentage);
+
   return (
     <>
       <div className="test-complete">
         <h1 style={{ textAlign: "center", marginBottom: "1rem" }}>Quiz Complete</h1>
         <p className="cl-text" style={{ textAlign: "center" }}>
-          Excellent effort! Review your metrics below or challenge yourself again to optimize your record.
+          {utl.message} Review your metrics below or challenge yourself again to optimize your record.
         </p>
       </div>
 
       <div className="test-results">
         <div className="test-results-left">
-          <Score />
+          <Score score={score} max={total} />
         </div>
         <div className="test-results-right">
           <div className="left-items">
-            <span className="tag tag-indigo">70% Score</span> <span className="tag tag-green">Passed</span>{" "}
+            <span className="tag tag-indigo">{percentage}% Score</span> <span className={`tag tag-${utl.color}`}>{utl.status}</span>{" "}
           </div>
-          <h2>Solid Understanding</h2>
-          <p className="cl-text">
-            Great job! You've got a very solid grasp of the baseline concepts. Keep practice modules flowing to push yourself to that elite 100%
-            bracket.
-          </p>
+          <h2>{utl.feedback}</h2>
+          <p className="cl-text">{utl.comment}</p>
         </div>
       </div>
 
       <div className="test-complete-buttons center-item">
-        <Button text="Retake Test" />
+        <Button text="Retake Test" onClick={restart} />
         <NavLink to={"/"}>
           <Button text="Back to Home" color="none" />
         </NavLink>

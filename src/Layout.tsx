@@ -1,7 +1,15 @@
 import type { ReactNode } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { useQuiz } from "./context";
+import { getTestStreak } from "./lib/helpers";
 
 export default function Layout({ children }: { children: ReactNode }) {
+  const { quizManager } = useQuiz();
+  const dates = quizManager.getQuizes().map((q) => q.lastAttemptAt);
+
+  const streak = getTestStreak(dates);
+  const color = dates.length ? "purple" : "green";
+
   return (
     <section className="layout">
       <header className="header">
@@ -16,14 +24,16 @@ export default function Layout({ children }: { children: ReactNode }) {
             <NavLink to="/developer">Developer</NavLink>
           </nav>
           <div className="header-user">
-            <div className="header-user-streak">🔥 5 Day Streak</div>
+            <div className={`header-user-streak streak-${color}`}>{streak}</div>
             <div className="header-user-image">
               <img src="/user1.jpg" alt="User" />
             </div>
           </div>
         </div>
       </header>
+
       <div className="main">{children}</div>
+
       <footer className="footer">
         <div className="footer-cover">
           <div className="footer-rights">&copy; {new Date().getFullYear()} Test Me Inc. All rights reserved.</div>

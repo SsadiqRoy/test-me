@@ -12,6 +12,8 @@
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
 
+  // border: 1px solid salmon;
+
   @include responsive(Mland) {
     display: flex;
     flex-direction: column-reverse;

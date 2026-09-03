@@ -6,16 +6,17 @@ import { LuBook } from "react-icons/lu";
 import { MdOutlineTopic } from "react-icons/md";
 import { PiAtom } from "react-icons/pi";
 import { Button, Return } from "./components";
-import { useQuiz, type Topic } from "./context";
+import { useQuiz } from "./context";
 import Layout from "./Layout";
 import "./styles/pages/topics.scss";
 import { useNavigate } from "react-router-dom";
+import type { Topic } from "../types";
 
 export default function Topics() {
-  const { topic, quiz } = useQuiz();
+  const { topic } = useQuiz();
   const navigate = useNavigate();
 
-  console.log(quiz);
+  // console.log(quiz);
 
   return (
     <Layout>
